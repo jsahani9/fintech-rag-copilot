@@ -18,52 +18,50 @@ The system is designed to **prevent hallucinations**, respond only from retrieve
 - ⚡ FastAPI backend for scalable API access
 - 🐳 Fully Dockerized (API + UI via Docker Compose)
 
-┌──────────────────────────────────────────────────────────────────────────┐
-│                        FinTech RAG Copilot System                        │
-│                                                                          │
-│  ┌────────────────────────────────────────────────────────────────────┐  │
-│  │  Streamlit UI (Port 8501)                                          │  │
-│  │  - User asks questions                                             │  │
-│  │  - Configurable k (top-k chunks)                                   │  │
-│  │  - Displays grounded answers with citations                        │  │
-│  └────────────────────────────────────────────────────────────────────┘  │
-│                                    │                                     │
-│                                    ▼                                     │
-│  ┌────────────────────────────────────────────────────────────────────┐  │
-│  │  FastAPI Backend (Port 8000)                                       │  │
-│  │  - /ask endpoint                                                   │  │
-│  │  - Calls retriever + LLM                                           │  │
-│  │  - Returns grounded answers                                        │  │
-│  └────────────────────────────────────────────────────────────────────┘  │
-│                                    │                                     │
-│                                    ▼                                     │
-│  ┌────────────────────────────────────────────────────────────────────┐  │
-│  │  RAG Pipeline                                                      │  │
-│  │  ├─ Retriever (Chroma)                                            │  │
-│  │  │  - Semantic search                                               │  │
-│  │  │  - MMR for diversity                                             │  │
-│  │  │  - Returns top-k chunks                                          │  │
-│  │  └─ LLM (AWS Bedrock / Claude Sonnet 4.5)                         │  │
-│  │     - Grounded generation                                          │  │
-│  │     - Citation enforcement                                         │  │
-│  │     - Hallucination control                                        │  │
-│  └────────────────────────────────────────────────────────────────────┘  │
-│                                    │                                     │
-│                                    ▼                                     │
-│  ┌────────────────────────────────────────────────────────────────────┐  │
-│  │  Vector Store (Chroma)                                             │  │
-│  │  - Persistent storage                                              │  │
-│  │  - Embeddings from PDF documents                                   │  │
-│  └────────────────────────────────────────────────────────────────────┘  │
-│                                    │                                     │
-│                                    ▼                                     │
-│  ┌────────────────────────────────────────────────────────────────────┐  │
-│  │  Data Sources                                                      │  │
-│  │  - OSFI Guidances (PDFs)                                           │  │
-│  │  - Cybersecurity Frameworks (PDFs)                                 │  │
-│  └────────────────────────────────────────────────────────────────────┘  │
-└──────────────────────────────────────────────────────────────────────────┘
-```
+## 🧠 System Architecture
+
+The FinTech RAG Copilot is designed as a modular, production-style Retrieval-Augmented Generation (RAG) system with clear separation between UI, API, retrieval, and generation layers.
+
+### High-Level Flow
+
+1. **User Interaction (Streamlit UI)**
+   - Users ask regulatory or compliance-related questions
+   - Adjustable top-k retrieval for transparency and control
+   - Displays grounded answers with inline citations
+
+2. **API Layer (FastAPI)**
+   - Exposes a `/ask` endpoint
+   - Orchestrates retrieval and generation
+   - Enforces response grounding and hallucination control
+
+3. **Retrieval Layer (ChromaDB)**
+   - Performs semantic similarity search over embedded documents
+   - Uses top-k retrieval (and MMR for diversity where applicable)
+   - Returns only relevant document chunks
+
+4. **Generation Layer (AWS Bedrock)**
+   - Uses Claude Sonnet 4.5 for answer generation
+   - Strictly constrained to retrieved context
+   - Returns “Not enough information” when sources are insufficient
+
+5. **Data Layer**
+   - Official OSFI guidance PDFs
+   - Cybersecurity and compliance frameworks
+   - Persisted vector embeddings using Amazon Titan
+
+---
+
+### Component Overview
+
+| Component | Technology |
+|--------|------------|
+| Frontend | Streamlit |
+| Backend API | FastAPI |
+| LLM | AWS Bedrock (Claude Sonnet 4.5) |
+| Embeddings | Amazon Titan |
+| Vector Store | ChromaDB |
+| Deployment | Docker + Docker Compose |
+
 
 ---
 
