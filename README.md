@@ -218,6 +218,7 @@ curl -X POST http://localhost:8000/ask \
   -d '{"question": "What are OSFI's cyber risk expectations?", "k": 5}'
 
 # Or use the Streamlit UI at http://localhost:8501
+```
 
 ## 📸 Application Screenshots
 
