@@ -218,3 +218,28 @@ curl -X POST http://localhost:8000/ask \
   -d '{"question": "What are OSFI's cyber risk expectations?", "k": 5}'
 
 # Or use the Streamlit UI at http://localhost:8501
+
+## 📸 Application Screenshots
+
+
+### 1️⃣ Grounded Regulatory Answer (Structured + Cited)
+Shows a multi-section, citation-backed response generated strictly from OSFI source documents.
+
+![Structured Answer]<img width="1466" height="739" alt="structured_answer" src="https://github.com/user-attachments/assets/3b22338c-8c08-49f6-aa4c-81affa54eb76" />
+
+
+---
+
+### 2️⃣ Hallucination Control (No Unsupported Claims)
+Demonstrates the system refusing to speculate when information is not present in the retrieved documents.
+
+![Hallucination Control]<img width="1488" height="694" alt="hallucination_control" src="https://github.com/user-attachments/assets/721a2a50-c2bf-436b-a4a5-89cbd1e5555a" />
+
+---
+
+### 3️⃣ Operational Compliance Guidance
+Illustrates extraction of reporting timelines and notification requirements from regulatory guidance.
+
+![Incident Reporting]<img width="1492" height="766" alt="incident_reporting" src="https://github.com/user-attachments/assets/74737895-0e51-453b-9d96-5665eb8c0bc4" />
+
+
