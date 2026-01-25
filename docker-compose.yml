@@ -1,0 +1,27 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fintech-rag-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      CHROMA_DIR: /app/chroma_db
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ~/.aws:/root/.aws:ro
+
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: fintech-rag-ui
+    ports:
+      - "8501:8501"
+    environment:
+      API_URL: http://api:8000/ask
+    depends_on:
+      - api
