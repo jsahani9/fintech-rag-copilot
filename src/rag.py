@@ -4,7 +4,7 @@ from src.bedrock_client import get_bedrock_runtime
 from src.config import LLM_MODEL_ID
 
 
-def format_context(docs, max_chars: int = 12000) -> str:
+def format_context(docs, max_chars: int = 20000) -> str:
     parts, used = [], 0
     for i, d in enumerate(docs, start=1):
         source = d.metadata.get("source", "unknown")
@@ -45,7 +45,7 @@ INSTRUCTIONS:
 
     body = {
         "anthropic_version": "bedrock-2023-05-31",
-        "max_tokens": 700,
+        "max_tokens": 1500,
         "temperature": 0.1,
         "system": system,
         "messages": [
@@ -67,7 +67,18 @@ INSTRUCTIONS:
     return data["content"][0]["text"]
 
 
-def answer(question: str, k: int = 5) -> str:
+def answer(question: str, k: int = 8) -> str:
     docs = retrieve(question, k=k)
     context = format_context(docs)
     return ask_claude(question, context)
+
+
+def answer_with_sources(question: str, k: int = 8) -> tuple[str, list[dict]]:
+    docs = retrieve(question, k=k)
+    context = format_context(docs)
+    answer_text = ask_claude(question, context)
+    sources = [
+        {"source": d.metadata.get("source", "unknown"), "page": d.metadata.get("page", "unknown")}
+        for d in docs
+    ]
+    return answer_text, sources

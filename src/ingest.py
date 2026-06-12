@@ -1,12 +1,12 @@
-import os 
 import shutil
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from src.vectorstore import get_vectorstore
+from src.config import CHROMA_DIR
 from pathlib import Path
 
 PDF_ROOT = Path("data/pdfs")
-CHROMA_DIR = Path("chroma_db")
+CHROMA_DIR = Path(CHROMA_DIR)
 
 
 def load_all_pdfs(pdf_root:Path):
@@ -49,8 +49,8 @@ def main():
         raise FileNotFoundError(f"No PDF pages loaded from: {PDF_ROOT}")
     
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size = 1000,
-        chunk_overlap = 150
+        chunk_size=1500,
+        chunk_overlap=300,
     )
     chunks = splitter.split_documents(docs)
     print(f"\nTotal chunks created: {len(chunks)}")

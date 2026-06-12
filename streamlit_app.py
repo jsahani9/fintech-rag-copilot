@@ -13,7 +13,7 @@ st.caption("Ask questions about OSFI documents. Answers are grounded with citati
 
 with st.sidebar:
     st.header("Settings")
-    k = st.slider("Top-k retrieved chunks", min_value=1, max_value=10, value=5)
+    k = st.slider("Top-k retrieved chunks", min_value=1, max_value=15, value=8)
     st.text_input("API URL", value=API_URL, key="api_url_help", disabled=True)
     st.markdown("**Tip:** Keep FastAPI running: `uvicorn app.main:app --reload`")
 
@@ -41,7 +41,7 @@ if ask_btn:
         with st.spinner("Thinking..."):
             try:
                 resp = requests.post(
-                    st.session_state.get("api_url", API_URL) if "api_url" in st.session_state else API_URL,
+                    API_URL,
                     json={"question": q, "k": k},
                     timeout=180,
                 )
@@ -51,5 +51,11 @@ if ask_btn:
                     data = resp.json()
                     st.markdown("### Answer")
                     st.markdown(data.get("answer", ""))
+
+                    sources = data.get("sources", [])
+                    if sources:
+                        with st.expander("Sources"):
+                            for s in sources:
+                                st.write(f"- **{s.get('source', 'unknown')}** (page {s.get('page', 'unknown')})")
             except requests.exceptions.RequestException as e:
                 st.error(f"Could not reach API at {API_URL}. Is FastAPI running?\n\nDetails: {e}")

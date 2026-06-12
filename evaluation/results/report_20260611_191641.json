@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-06-11T19:16:41.358506",
+  "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+  "elapsed_seconds": 136.3,
+  "n_questions": 3,
+  "scores": {
+    "faithfulness": 0.6623,
+    "answer_relevancy": 0.3333,
+    "llm_context_precision_with_reference": 0.0,
+    "context_recall": 0.1111
+  },
+  "per_question": [
+    {
+      "question": "What are the primary responsibilities of the board of directors under OSFI's Corporate Governance Guideline?",
+      "answer": "Based on the provided documents, the primary responsibilities of the board of directors under OSFI's Corporate Governance Guideline include:\n\n1. **Oversight of Management and Strategy**: The Board relies on Senior Management to provide sound advice on organizational objectives, plans, strategy, structure and significant policies. The Board should understand the decisions, plans and policies being implemented by Senior Management and their potential impact on the FRFI [3].\n\n2. **Risk Oversight**: The Board works with Oversight Functions that provide objective assessments to allow directors to fulfill their responsibilities. These functions identify, measure, and report on the FRFI's risks, assess the effectiveness of risk management and internal controls, and determine whether operations, results and risk exposures are consistent with the FRFI's risk appetite [3].\n\n3. **Business Strategy and Risk Appetite**: The Board has expectations regarding business strategy, risk appetite and operational, business, risk and crisis management policies [2].\n\n4. **Board Composition and Succession**: The Board should consider diversity as a factor in succession plans for Board committee Chairs [5]. The FRFI should have transparent processes and criteria for selecting Board members, with qualifications provided to OSFI [4].\n\n5. **Independence**: The Board, collectively, should be independent from Senior Management and the operations of the FRFI, with OSFI viewing the separation of the Chair and CEO as critical [5].",
+      "ground_truth": "Under OSFI's Corporate Governance Guideline, the board of directors is responsible for the overall stewardship of the institution. This includes approving and overseeing strategic objectives, the risk appetite framework, and significant policies. The board must ensure senior management implements systems to identify, assess, and control material risks, promote a culture of ethical conduct and compliance, oversee succession planning for key executive roles, and satisfy itself that the institution operates in a safe, sound, and prudent manner.",
+      "n_contexts": 5
+    },
+    {
+      "question": "How does OSFI expect the Chief Risk Officer to function within a federally regulated financial institution?",
+      "answer": "Based on the provided documents, OSFI expects that a federally regulated financial institution (FRFI) should have a senior officer functioning as Chief Risk Officer (CRO) or equivalent [2]. \n\nHowever, the context provided does not contain detailed information about OSFI's specific expectations for how the CRO should function within the institution. The only additional detail mentioned is that for small, less complex FRFIs, the CRO role can be held by another executive of the FRFI (meaning the executive has dual roles), and some FRFIs may not have a CRO position per se [2].\n\nI don't have enough information in the provided documents to describe OSFI's complete expectations regarding the CRO's responsibilities, reporting lines, authority, or specific functions within a FRFI.",
+      "ground_truth": "OSFI expects the Chief Risk Officer (CRO) to serve as an independent executive who leads the enterprise risk management function. The CRO must have unfettered access to the board and its risk committee, be free from conflicts of interest with revenue-generating business lines, and be responsible for overseeing the identification, measurement, monitoring, and control of all material risks. The CRO should be consulted on significant business decisions that affect the institution's risk profile and must report independently to the board on risk matters.",
+      "n_contexts": 5
+    },
+    {
+      "question": "What is the three lines of defence model as described in OSFI's corporate governance expectations?",
+      "answer": "I don't have enough information in the provided documents to describe the three lines of defence model as it relates to OSFI's corporate governance expectations.\n\nWhile the documents reference OSFI's Corporate Governance Guideline [1] and mention expectations regarding Board oversight, risk management frameworks [4], and supervisory assessments [5], none of the provided excerpts explicitly describe or define the three lines of defence model itself.\n\nTo answer this question accurately, I would need access to the full Corporate Governance Guideline document that is referenced in [1].",
+      "ground_truth": "The three lines of defence model is a governance structure with clear accountability at each layer. The first line consists of business units and front-line managers who own and manage risks as part of their daily operations. The second line comprises risk management and compliance functions that develop frameworks, set policies, and provide oversight and challenge of the first line. The third line is internal audit, which provides independent, objective assurance over the adequacy and effectiveness of both the first and second lines. Together they ensure risk-taking, risk oversight, and assurance remain clearly separated.",
+      "n_contexts": 5
+    }
+  ]
+}

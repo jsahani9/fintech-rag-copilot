@@ -10,7 +10,7 @@ venv/
 env/
 
 # Local artifacts
-chroma_db/
+#chroma_db/
 data/
 
 # Git

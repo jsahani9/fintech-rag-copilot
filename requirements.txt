@@ -10,3 +10,8 @@ fastapi
 uvicorn[standard]
 langchain-chroma
 langchain-aws
+pytest
+httpx
+ragas>=0.2.0
+datasets
+instructor

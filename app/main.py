@@ -1,8 +1,8 @@
 import asyncio
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
-from src.rag import answer
+from src.rag import answer_with_sources
 
 app = FastAPI(
     title="FinTech RAG Copilot",
@@ -12,12 +12,13 @@ app = FastAPI(
 
 
 class QuestionRequest(BaseModel):
-    question: str
-    k: int = 5
+    question: str = Field(..., min_length=1, max_length=2000)
+    k: int = 8
 
 
 class AnswerResponse(BaseModel):
     answer: str
+    sources: list[dict]
 
 
 @app.get("/health")
@@ -31,9 +32,9 @@ async def ask_rag(req: QuestionRequest):
     Main RAG endpoint.
     Runs the blocking Bedrock + retrieval pipeline in a worker thread.
     """
-    response_text = await asyncio.to_thread(
-        answer,
+    answer_text, sources = await asyncio.to_thread(
+        answer_with_sources,
         req.question,
-        req.k
+        req.k,
     )
-    return {"answer": response_text}
+    return {"answer": answer_text, "sources": sources}
